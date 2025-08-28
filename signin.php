@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(0);
+
 $host="localhost";
 $user="root";
 $password="";
@@ -24,16 +27,23 @@ if($data===false)
 		
 		if($row["employer_flag"]==1)
         {
+			$_SESSION['username']=$name;
 			header("location:employerhome.php");
 			exist;
 		}
 		elseif($row["job_seeker_flag"]==1)
 		{
+			$_SESSION['username']=$name;
 			header("location:job_seekerhome.php");
 			exist;
 		}
 		else
 		{
-			echo "username or password do not match";
+			session_start();
+			$mess="username or password do not match";
+			
+			$_SESSION['loginMessage']=$mess;
+			
+			header("location:index.php");
 		}
 	}
