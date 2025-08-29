@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) || $_SESSION['employer_flag'] == 1) {
-    header("location: index.php");
-    exit();
-}
+
 
 $host="localhost";
 $user="root";
@@ -25,7 +22,7 @@ $info=mysqli_fetch_assoc($result);
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Profile</title>
+    <title>MyProfile</title>
     <link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/animate.min.css" rel="stylesheet"/>
@@ -33,7 +30,7 @@ $info=mysqli_fetch_assoc($result);
 </head>
 <body>
         <section id="header">
-           <div class="header-title">PROFILE</div>
+           <div class="header-title">My Profile</div>
 		   <div class="logout">
 		       <a href="logout.php">Logout</a>
 		   </div>
@@ -44,7 +41,7 @@ $info=mysqli_fetch_assoc($result);
 				    <a href="job_seekerhome.php">Home</a>
 				</li>
 				 <li>
-				    <a href="job_seekerprofile.php">Profile</a>
+				    <a href="job_seekerprofile.php">My Profile</a>
 				</li>
 				 <li>
 				    <a href="">Find Jobs</a>
@@ -73,6 +70,10 @@ $info=mysqli_fetch_assoc($result);
 			    <input type="text" name="lame">
 			  </div>
 			  <div>
+			    <label>Email</label>
+				<input type="email" name="email">
+			  </div>
+			  <div>
 			    <label>Password</label>
 			    <input type="text" name="password">
 			  </div>
@@ -81,7 +82,7 @@ $info=mysqli_fetch_assoc($result);
 			    <input type="text" name="saved_jobs">
 			  </div>
 			  <div>
-			    <label>Skill</label>
+			    <label>Skills</label>
 			    <input type="text" name="skill">
 		      </div>
 			  <div>
