@@ -43,7 +43,7 @@ $result=mysqli_query($data,$sql);
 				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
 				</li>
 				 <li>
-				    <a href="">Post Job</a>
+				    <a href="postjob.php">Post Job</a>
 				</li>
 			</ul>
 		</aside>

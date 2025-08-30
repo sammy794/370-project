@@ -26,6 +26,8 @@ if(isset($_POST['update']))
 	$experience=$_POST['experience'];
 	$resume=$_POST['resume'];
 	
+
+	
 	$query="UPDATE user SET username='$username',fname='$fname',lname='$lname',email='$email',password='$password',
 	saved_jobs='$saved_jobs',skill='$skill',experience='$experience',resume='$resume' WHERE id='$id'";
 	
@@ -138,7 +140,7 @@ if(isset($_POST['update']))
 				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
 				</li>
 				 <li>
-				    <a href="">Post Job</a>
+				    <a href="postjob.php">Post Job</a>
 				</li>
 			</ul>
 		</aside>

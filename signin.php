@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 error_reporting(0);
 
 $host="localhost";
@@ -23,27 +23,38 @@ if($data===false)
 		
 		$result=mysqli_query($data,$sql);
 		$row=mysqli_fetch_array($result);
+		$_SESSION['user_id'] = $row['id']; 
+
 		
 		
 		if($row["employer_flag"]==1)
         {
 			$_SESSION['username']=$name;
+            $_SESSION['employer_flag'] = $row['employer_flag']; 
+			$_SESSION['user_id'] = $row['id'];  
+
 			header("location:employerhome.php");
-			exist;
+			exit;
 		}
 		elseif($row["job_seeker_flag"]==1)
 		{
 			$_SESSION['username']=$name;
+			$_SESSION['job_seeker_flag'] = $row['job_seeker_flag'];
+			$_SESSION['user_id'] = $row['id'];  
+
 			header("location:job_seekerhome.php");
-			exist;
+			exit;
 		}
 		else
 		{
-			session_start();
+
 			$mess="username or password do not match";
 			
 			$_SESSION['loginMessage']=$mess;
 			
 			header("location:index.php");
+			exit();
 		}
 	}
+	
+?>

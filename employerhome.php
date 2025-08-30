@@ -18,19 +18,22 @@
 		<aside>
 		    <ul>
 			    <li>
-				    <a href="">Home</a>
+				    <a href="employerhome.php">Home</a>
 				</li>
 				 <li>
-				    <a href="">Employer Profile</a>
+				    <a href="employerprofile.php">My Profile</a>
 				</li>
 				 <li>
-				    <a href="">Job Seeker Profile</a>
+				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
 				</li>
 				 <li>
-				    <a href="">Post Job</a>
+				    <a href="postjob.php">Post Job</a>
 				</li>
 			</ul>
 		</aside>
+		<div class="title">
+		<h1>Welcome aboard!What's new today?</h1>
+		</div>
 		
 		
 
