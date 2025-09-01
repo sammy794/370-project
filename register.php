@@ -1,3 +1,62 @@
+<?php
+session_start();
+
+$host="localhost";
+$user="root";
+$password="";
+$db="job_platform";
+
+$data=mysqli_connect($host,$user,$password,$db);
+$error = ""; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $fname    = $_POST['fname'];
+    $lname    = $_POST['lname'];
+    $email    = $_POST['email'];
+    $password = $_POST['password'];
+    $role     = $_POST['role'];
+	
+	$check = "SELECT * FROM user WHERE username='$username'";
+    $res = mysqli_query($data, $check);
+    if (mysqli_num_rows($res) > 0) {
+        $error = "❌ Username already exists, please choose another.";
+    }
+     if (empty($error)) {
+        if ($role === "jobseeker") {
+            $skills     = $_POST['skill'];
+            $experience = $_POST['experience'];
+            $flag = 1;
+
+            $sql = "INSERT INTO user (username, fname, lname, email, password, job_seeker_flag, skill, experience)
+                    VALUES ('$username', '$fname', '$lname', '$email', '$password', '$flag','$skills', '$experience')";
+            $result=mysqli_query($data,$sql);
+            if($result) {
+				$user_id = mysqli_insert_id($data);
+				$_SESSION['user_id'] = $user_id; 
+                $_SESSION['username'] = $username;
+
+
+                header("location:job_seekerhome.php");
+                exit;
+            }
+        } else {
+            $flag = 0;
+            $sql = "INSERT INTO user (username, fname, lname, email, password, job_seeker_flag, employer_flag)
+                    VALUES ('$username', '$fname', '$lname', '$email', '$password', '$flag',1)";
+            $result=mysqli_query($data,$sql);
+            if($result) {
+				$user_id = mysqli_insert_id($data);
+				$_SESSION['user_id'] = $user_id; 
+                $_SESSION['username'] = $username;
+                header("location:employerhome.php");
+                exit;
+            }
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +84,9 @@
 <body>
     <div class="registration-form">
        <h1>Registration form</h1>
+	    <?php if (!empty($error)) : ?>
+           <p style="color:red; font-weight:bold;"><?php echo $error; ?></p>
+       <?php endif; ?>
 	   <p>Select your role:</p>
        <select id="roleSelect" onchange="showForm()">
          <option value="">-- Choose --</option>
@@ -35,7 +97,8 @@
 	   
 	   <div id="jobseekerForm" class="form-section">
           <h2>Job Seeker Registration</h2>
-          <form action="register_jobseeker.php" method="POST">
+          <form action="#" method="POST">
+		     <input type="hidden" name="role" value="jobseeker">
              <p>Username:</p>
              <input type="text" name="username" required>
              <p>First Name:</p>
@@ -47,7 +110,7 @@
              <p>Password:</p>
              <input type="password" name="password" required>
              <p>Skills:</p>
-             <input type="text" name="skills" 
+             <input type="text" name="skill" 
 			 <p>Experience:</p>
              <input type="text" name="experience" 
              <br><br>
@@ -57,7 +120,8 @@
 	   
 	   <div id="employerForm" class="form-section">
           <h2>Employer Registration</h2>
-          <form action="register_employer.php" method="POST">
+          <form action="#" method="POST">
+		    <input type="hidden" name="role" value="employer">
 		    <p>Username:</p>
             <input type="text" name="username" required>
             <p>First Name:</p>

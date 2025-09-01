@@ -78,7 +78,7 @@ $result=mysqli_query($data,$sql);
 				<th class="table_th">Subject</th>
 				<th class="table_th">Content</th>
 				<th class="table_th">Delete</th>
-				<th class="table_th">Update</th>
+				
 			  </tr>
 			  <?php
 			  while($info=$result->fetch_assoc())
@@ -96,8 +96,16 @@ $result=mysqli_query($data,$sql);
 				    <?php echo $info['username'] ?? 'Username Not Found'; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo $info['email'] ?? 'Email Not Found'; ?>
-				</td>
+                   <?php if(!empty($info['email'])): ?>
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<?php echo $info['email']; ?>" target="_blank">
+                          <?php echo $info['email']; ?>
+                      </a>
+                   <?php else: ?>
+                        Email Not Found
+                   <?php endif; ?>
+                </td>
+
+
 				<td class="table_td">
 				    <?php echo "{$info['subject']}"; ?>
 				</td>
@@ -110,10 +118,6 @@ $result=mysqli_query($data,$sql);
 			  
 			  echo "<a onClick=\" javascript:return confirm('Are you sure you want to delete this message?');\"class='btn btn-danger' href='deletemsg.php?message_id={$info['id']}'>Delete</a>"; 
 			  ?>
-				</td>
-				
-				<td class="table_td">
-				    <?php echo "<a class='btn btn-primary' href='update_js_profile.php?job_seeker_id={$info['id']}'>Update</a>"; ?>
 				</td>
 				
 			  </tr>

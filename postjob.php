@@ -7,7 +7,7 @@ $password="";
 $db="job_platform";
 
 
-$employer_id = $_SESSION['employer_id'];
+$employer_id = $_SESSION['user_id'];
 $data=mysqli_connect($host,$user,$password,$db);
 $sql = "SELECT job.id AS job_id, job.user_id, job.title, job.requirement,
                user.id AS employer_id
@@ -100,15 +100,16 @@ $result=mysqli_query($data,$sql);
 				</tr>
 				
 				<?php
-                while($info=$result->fetch_assoc())
-                {
+                while($info=$result->fetch_assoc()) {
+                $isOwner = ($info['user_id'] == $_SESSION['user_id']);
+    
                 ?>
                     <tr>
                        <td class="table_td">
                            <?php echo "{$info['job_id']}"; ?>
                        </td>
                        <td class="table_td">				       
-                           <?php echo $info['employer_id'] ?? 'User Not Found'; ?>
+                           <?php echo $info['user_id'] ?? 'User Not Found'; ?>
                        </td>
                        <td class="table_td">
                            <?php echo "{$info['title']}"; ?>
@@ -116,30 +117,32 @@ $result=mysqli_query($data,$sql);
                        <td class="table_td">
                            <?php echo "{$info['requirement']}"; ?>
                        </td>
+					   
+					   <!-- Delete button -->
 
-                       <?php if ($info['user_id'] == $_SESSION['employer_id']) { ?>
                            <td class="table_td">
-                               <a onClick="return confirm('Are you sure you want to delete this job?');" 
-                                  class="btn btn-danger" 
-                                  href="deletejob.php?job_id=<?php echo $info['job_id']; ?>">
-                                  Delete
-                               </a>
+						       <?php if($isOwner) { ?>
+                                   <a onClick="return confirm('Are you sure you want to delete this job?');" 
+                                       class="btn btn-danger" 
+                                       href="deletejob.php?job_id=<?php echo $info['job_id']; ?>">
+                                       Delete
+                                   </a>
+                               <?php } else { echo "-"; } ?>
+                           </td>
+
+                              
                            </td>
                            <td class="table_td">
-                               <a class="btn btn-primary" 
-                                    href="updatejob.php?job_id=<?php echo $info['job_id']; ?>">
-                                    Update
-                               </a>
+                               <?php if($isOwner) { ?>
+                                  <a class="btn btn-primary" 
+                                     href="updatejob.php?job_id=<?php echo $info['job_id']; ?>">
+                                     Update
+                                  </a>
+                               <?php } else { echo "-"; } ?>
                            </td>
-                       <?php } else { ?>
-                           <td class="table_td">-</td>
-                           <td class="table_td">-</td>
-                       <?php } ?>
                     </tr>
-                <?php
-                } // 
-                ?>
-
+                <?php } ?>
+                        
 			 </table>
 			 </center>
 		</div>

@@ -14,11 +14,7 @@
       <link href="css/main.css" rel="stylesheet"/> 
 </head>
 <body>
-    <section id="header">
-        <div class="header-title">JOB HUB</div>
-    </section>
 
-    
     <section class="login-section">
          <form action="signin.php" method="post" class="login-form">
 		    <h1 class="login-error">

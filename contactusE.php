@@ -88,6 +88,9 @@ if(isset($_POST['send_message']))
 		            Need help? 
 			        Feel free to send your queries here..
 		    </p>
+			<p>
+                Please keep an eye on your mail. We'll get back to you soon!
+            </p>
 		</div>
 </body>
 </html>
