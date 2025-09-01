@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-// Check if not logged in OR if the user is an employer
-if (!isset($_SESSION['username']) || $_SESSION['employer_flag'] == 1) {
-    header("Location: index.php");
-    exit();
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,16 +21,16 @@ if (!isset($_SESSION['username']) || $_SESSION['employer_flag'] == 1) {
 				    <a href="job_seekerhome.php">Home</a>
 				</li>
 				 <li>
-				    <a href="job_seekerprofile.php">Profile</a>
+				    <a href="job_seekerprofile.php">My Profile</a>
 				</li>
 				 <li>
-				    <a href="">Find Jobs</a>
+				    <a href="findjob.php">Find Jobs</a>
 				</li>
 				 <li>
 				    <a href="">Job Application</a>
 				</li>
 				<li>
-				    <a href="">ContactUs</a>
+				    <a href="contactus.php">ContactUs</a>
 				</li>
 			</ul>
 		</aside>

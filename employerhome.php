@@ -7,6 +7,14 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/animate.min.css" rel="stylesheet"/>
     <link href="css/employer.css" rel="stylesheet"/>
+	 <style>
+       .par {
+           color: black;
+           font-weight: bold;
+		   font-size:25px;
+		   padding-left:45px;
+       }
+    </style>
 </head>
 <body>
         <section id="header">
@@ -20,19 +28,25 @@
 			    <li>
 				    <a href="employerhome.php">Home</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="employerprofile.php">My Profile</a>
 				</li>
-				 <li>
-				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
+				<li>
+				    <a href="viewJSprofileE.php">Job Candidate Profiles</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="postjob.php">Post Job</a>
+				</li>
+				<li>
+				    <a href="contactusE.php">ContactUS</a>
 				</li>
 			</ul>
 		</aside>
 		<div class="title">
 		<h1>Welcome aboard!What's new today?</h1>
+		<p class="par">
+		Post new jobs and find your perfect candidate!
+		</p>
 		</div>
 		
 		

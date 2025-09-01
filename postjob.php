@@ -6,8 +6,15 @@ $user="root";
 $password="";
 $db="job_platform";
 
+
+$employer_id = $_SESSION['employer_id'];
 $data=mysqli_connect($host,$user,$password,$db);
-$sql="SELECT * FROM job";
+$sql = "SELECT job.id AS job_id, job.user_id, job.title, job.requirement,
+               user.id AS employer_id
+        FROM job
+        LEFT JOIN user ON job.user_id = user.id";
+
+		
 $result=mysqli_query($data,$sql);
 
 ?>
@@ -53,14 +60,17 @@ $result=mysqli_query($data,$sql);
 			    <li>
 				    <a href="employerhome.php">Home</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="employerprofile.php">My Profile</a>
 				</li>
-				 <li>
-				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
+				<li>
+				    <a href="viewJSprofileE.php">Job Candidate Profiles</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="postjob.php">Post Job</a>
+				</li>
+				<li>
+				    <a href="contactusE.php">ContactUS</a>
 				</li>
 			</ul>
 		</aside>
@@ -85,45 +95,51 @@ $result=mysqli_query($data,$sql);
 				   <th class="table_th">UserID</th>
 				   <th class="table_th">JobTitle</th>
 				   <th class="table_th">Requirements</th>
-				   <th class="table_th">Update</th>
 				   <th class="table_th">Delete</th>
+				   <th class="table_th">Update</th>
 				</tr>
-				<?php
-			    while($info=$result->fetch_assoc())
-			    {
-			    ?>
 				
-				<tr>
-				   <td class="table_td">
-				       <?php echo "{$info['id']}"; ?>
-				   </td>
-				   <td class="table_td">
-				       <?php echo "{$info['user_id']}"; ?>
-				   </td>
-				   <td class="table_td">
-				       <?php echo "{$info['title']}"; ?>
-				   </td>
-				   <td class="table_td">
-				       <?php echo "{$info['requirement']}"; ?>
-				   </td>
-				   <td class="table_td">
-			  <?php 
-			  
-			  echo "<a onClick=\" javascript:return confirm('Are you sure you want to delete this job?');\"class='btn btn-danger' href='delete.php?job_id={$info['id']}'>Delete</a>"; 
-			  ?>
-				   </td>
-				   <td class="table_td">
-				       <?php echo "<a class='btn btn-primary' href='updatejob.php?job_id={$info['id']}'>Update</a>"; ?>
-				   </td>
-				   
-				   
-				   
-				</tr>
 				<?php
-			  
-			    }
-			  
-			    ?>
+                while($info=$result->fetch_assoc())
+                {
+                ?>
+                    <tr>
+                       <td class="table_td">
+                           <?php echo "{$info['job_id']}"; ?>
+                       </td>
+                       <td class="table_td">				       
+                           <?php echo $info['employer_id'] ?? 'User Not Found'; ?>
+                       </td>
+                       <td class="table_td">
+                           <?php echo "{$info['title']}"; ?>
+                       </td>
+                       <td class="table_td">
+                           <?php echo "{$info['requirement']}"; ?>
+                       </td>
+
+                       <?php if ($info['user_id'] == $_SESSION['employer_id']) { ?>
+                           <td class="table_td">
+                               <a onClick="return confirm('Are you sure you want to delete this job?');" 
+                                  class="btn btn-danger" 
+                                  href="deletejob.php?job_id=<?php echo $info['job_id']; ?>">
+                                  Delete
+                               </a>
+                           </td>
+                           <td class="table_td">
+                               <a class="btn btn-primary" 
+                                    href="updatejob.php?job_id=<?php echo $info['job_id']; ?>">
+                                    Update
+                               </a>
+                           </td>
+                       <?php } else { ?>
+                           <td class="table_td">-</td>
+                           <td class="table_td">-</td>
+                       <?php } ?>
+                    </tr>
+                <?php
+                } // 
+                ?>
+
 			 </table>
 			 </center>
 		</div>

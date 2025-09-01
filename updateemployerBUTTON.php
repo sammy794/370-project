@@ -8,7 +8,7 @@ $db="job_platform";
 
 $data=mysqli_connect($host,$user,$password,$db);
 
-$id=$_GET['job_seeker_id'];
+$id=$_GET['employer_id'];
 
 $sql="SELECT * FROM user where id='$id'";
 $result=mysqli_query($data,$sql);
@@ -21,20 +21,16 @@ if(isset($_POST['update']))
 	$lname=$_POST['lname'];
 	$email=$_POST['email'];
 	$password=$_POST['password'];
-	$saved_jobs=$_POST['saved_jobs'];
-	$skill=$_POST['skill'];
-	$experience=$_POST['experience'];
-	$resume=$_POST['resume'];
+	
 	
 
 	
-	$query="UPDATE user SET username='$username',fname='$fname',lname='$lname',email='$email',password='$password',
-	saved_jobs='$saved_jobs',skill='$skill',experience='$experience',resume='$resume' WHERE id='$id'";
+	$query="UPDATE user SET username='$username',fname='$fname',lname='$lname',email='$email',password='$password' WHERE id='$id'";
 	
 	$result2=mysqli_query($data,$query);
 	if($result2)
 	{
-		header("location:modify_JS_Pro.php");
+		header("location:updateemployerPRO.php");
 	}
 	
 }
@@ -43,12 +39,14 @@ if(isset($_POST['update']))
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Job Seeker Profile</title>
+    <title>Employer Profile</title>
 	<link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/animate.min.css" rel="stylesheet"/>
@@ -57,13 +55,13 @@ if(isset($_POST['update']))
 </head>
 <body>
         <section id="header">
-           <div class="header-title">Job Seeker Profile</div>
+           <div class="header-title">Employer Profile</div>
 		   <div class="logout">
 		       <a href="logout.php">Logout</a>
 		   </div>
 		   <div class="contentT">
 		      <center>
-		      <h1>Edit Job Candidate Details</h1>
+		      <h1>Edit Employer Details</h1>
 			  <div class="deg">
 			     <form action="#" method="POST">
 				   <div>
@@ -96,30 +94,7 @@ if(isset($_POST['update']))
 					   value="<?php echo "{$info['password']}"; ?>"
 					   >
 				   </div>
-				   <div>
-				       <label>Saved Jobs</label>
-					   <input type="text" name="saved_jobs"
-					   value="<?php echo "{$info['saved_jobs']}"; ?>"
-					   >
-				   </div>
-				   <div>
-				       <label>Skills</label>
-					   <input type="text" name="skill"
-					   value="<?php echo "{$info['skill']}"; ?>"
-					   >
-				   </div>
-				   <div>
-				       <label>Experience</label>
-					   <input type="text" name="experience"
-					   value="<?php echo "{$info['experience']}"; ?>"
-					   >
-				   </div>
-				   <div>
-				       <label>Resume</label>
-					   <input type="file" name="resume"
-					   value="<?php echo "{$info['resume']}"; ?>"
-					   >
-				   </div>
+				   
 				   <div>
 			           <input type="submit" class="btn btn-success" name="update" value="Update">
 			       </div>

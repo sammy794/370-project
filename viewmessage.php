@@ -7,17 +7,24 @@ $password="";
 $db="job_platform";
 
 $data=mysqli_connect($host,$user,$password,$db);
-$sql="SELECT * FROM user where job_seeker_flag=1";
+$sql = "SELECT message.id, message.user_id, message.subject, message.content,
+               user.username, user.email
+        FROM message
+        LEFT JOIN user ON message.user_id = user.id";
+
+
 $result=mysqli_query($data,$sql);
 
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Job Seeker Profile</title>
+    <title>Messages</title>
 	<link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/animate.min.css" rel="stylesheet"/>
@@ -26,12 +33,12 @@ $result=mysqli_query($data,$sql);
 </head>
 <body>
         <section id="header">
-           <div class="header-title">Job Seeker Profiles</div>
+           <div class="header-title">Messages</div>
 		   <div class="logout">
 		       <a href="logout.php">Logout</a>
 		   </div>
-		</section>
-		<aside class="sidebar">
+        </section>
+		<aside>
 		    <ul>
 			    <li>
 				    <a href="adminhome.php">Home</a>
@@ -50,8 +57,8 @@ $result=mysqli_query($data,$sql);
 				</li>
 			</ul>
 		</aside>
-		<div class="contentt">
-		      <h1 class="form-title2">View Job Candidate Details</h1>		  
+		<div class="content">
+		     <h1 class="form-title">View Messages</h1>
 		</div>
 		<?php
 		    if($_SESSION['message'])
@@ -60,20 +67,16 @@ $result=mysqli_query($data,$sql);
 			}
 			unset($_SESSION['message']);
 		?>
-		   
-        <div class="content">
+		<div class="content">
 		    <center>
 		    <table border="1px">
 			  <tr>
-			    <th class="table_th">Username</th>
-				<th class="table_th">FirstName</th>
-				<th class="table_th">LastName</th>
+			    <th class="table_th">Message ID</th>
+				<th class="table_th">User ID</th>
+				<th class="table_th">Username</th>
 				<th class="table_th">Email</th>
-				<th class="table_th">Password</th>
-				<th class="table_th">SavedJobs</th>
-				<th class="table_th">Skills</th>
-				<th class="table_th">Experience</th>
-				<th class="table_th">Resume</th>
+				<th class="table_th">Subject</th>
+				<th class="table_th">Content</th>
 				<th class="table_th">Delete</th>
 				<th class="table_th">Update</th>
 			  </tr>
@@ -84,36 +87,28 @@ $result=mysqli_query($data,$sql);
 			  
 			  <tr>
 			    <td class="table_td">
-				    <?php echo "{$info['username']}"; ?>
+				    <?php echo "{$info['id']}"; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo "{$info['fname']}"; ?>
+				    <?php echo $info['user_id'] ?? 'User id Not Found'; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo "{$info['lname']}"; ?>
+				    <?php echo $info['username'] ?? 'Username Not Found'; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo "{$info['email']}"; ?>
+				    <?php echo $info['email'] ?? 'Email Not Found'; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo "{$info['password']}"; ?>
+				    <?php echo "{$info['subject']}"; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo "{$info['saved_jobs']}"; ?>
+				    <?php echo "{$info['content']}"; ?>
 				</td>
-				<td class="table_td">
-				    <?php echo "{$info['skill']}"; ?>
-				</td>
-				<td class="table_td">
-				    <?php echo "{$info['experience']}"; ?>
-				</td>
-				<td class="table_td">
-				    <?php echo "{$info['resume']}"; ?>
-				</td>
+				
 				<td class="table_td">
 			  <?php 
 			  
-			  echo "<a onClick=\" javascript:return confirm('Are you sure you want to delete this candidate?');\"class='btn btn-danger' href='deletejobseeker.php?job_seeker_id={$info['id']}'>Delete</a>"; 
+			  echo "<a onClick=\" javascript:return confirm('Are you sure you want to delete this message?');\"class='btn btn-danger' href='deletemsg.php?message_id={$info['id']}'>Delete</a>"; 
 			  ?>
 				</td>
 				
@@ -131,6 +126,6 @@ $result=mysqli_query($data,$sql);
 			</center>
 		</div>
     
-        
+		
 </body>
 </html>

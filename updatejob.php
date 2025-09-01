@@ -20,7 +20,7 @@ if(isset($_POST['update']))
 	$title=$_POST['title'];
 	$requirement=$_POST['requirement'];
 	
-	$query="UPDATE job SET id= title='$title',requirement='$requirement' WHERE id='$id'";
+	$query="UPDATE job SET title='$title',requirement='$requirement' WHERE id='$id'";
 
 $result2=mysqli_query($data,$query);
 	if($result2)
@@ -58,16 +58,11 @@ $result2=mysqli_query($data,$query);
 			     <form action="#" method="POST">
 				   <div>
 				       <label>JobID</label>
-					   
-					   <input type="text" name="id"
-                       value="<?php echo $info['id']; ?>" readonly>
-					   
+				          <?php echo "{$info['id']}"; ?>					   
 				   </div>
 				   <div>
 				       <label>UserID</label>
-					   <input type="text" name="user_id"
-                       value="<?php echo $info['user_id']; ?>" readonly>
-					   
+				       <?php echo "{$info['user_id']}"; ?>					   
 				   </div>
 				   <div>
 				       <label>JobTitle</label>
@@ -93,13 +88,16 @@ $result2=mysqli_query($data,$query);
 			    <li>
 				    <a href="employerhome.php">Home</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="employerprofile.php">My Profile</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
 				</li>
-				 <li>
+				<li>
+				    <a href="viewmessage.php">View Messages</a>
+				</li>
+				<li>
 				    <a href="postjob.php">Post Job</a>
 				</li>
 			</ul>

@@ -33,7 +33,7 @@ if(isset($_POST['update_profile']))
 	$result2=mysqli_query($data,$query);
 	if($result2)
 	{
-		 header('location:employerprofile.php');
+		 header('location:adminprofile.php');
 	}
 
 }
@@ -45,15 +45,16 @@ if(isset($_POST['update_profile']))
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MyProfile</title>
+    <title>AdminProfile</title>
 	<link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/animate.min.css" rel="stylesheet"/>
     <link href="css/employer.css" rel="stylesheet"/>
+	
 </head>
 <body>
         <section id="header">
-           <div class="header-title">Employer Profiles</div>
+           <div class="header-title">Admin Profile</div>
 		   <div class="logout">
 		       <a href="logout.php">Logout</a>
 		   </div>
@@ -61,25 +62,24 @@ if(isset($_POST['update_profile']))
 		<aside>
 		    <ul>
 			    <li>
-				    <a href="employerhome.php">Home</a>
+				    <a href="adminhome.php">Home</a>
 				</li>
 				<li>
-				    <a href="employerprofile.php">My Profile</a>
+				    <a href="adminprofile.php">Admin Profile</a>
 				</li>
 				<li>
-				    <a href="viewJSprofileE.php">Job Candidate Profiles</a>
+				    <a href="modify_JS_Pro.php">Job Seeker Profiles</a>
 				</li>
 				<li>
-				    <a href="postjob.php">Post Job</a>
+				    <a href="updateemployerPRO.php">Employer Profiles</a>
 				</li>
 				<li>
-				<li>
-				    <a href="contactusE.php">ContactUS</a>
+				    <a href="viewmessage.php">View Messages</a>
 				</li>
 			</ul>
 		</aside>
 		<div class="content2">
-		  <h1 class="form-title">My Profile</h1>
+		  <h1 class="form-title"> Update Profile</h1>
 		   <form action="#" method="POST">
 		      <div class="div_deg">
 			  <div>
@@ -121,4 +121,3 @@ if(isset($_POST['update_profile']))
 		
 </body>
 </html>
-		

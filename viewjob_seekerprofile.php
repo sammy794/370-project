@@ -1,14 +1,14 @@
 <?php
-error_reporting(0);
-session_start();
-$host="localhost";
-$user="root";
-$password="";
-$db="job_platform";
 
-$data=mysqli_connect($host,$user,$password,$db);
-$sql="SELECT * FROM user where job_seeker_flag=1";
-$result=mysqli_query($data,$sql);
+     $host="localhost";
+     $user="root";
+     $password="";
+     $db="job_platform";
+
+     $data=mysqli_connect($host,$user,$password,$db);
+	 
+	 $sql="SELECT * FROM user where job_seeker_flag=1";
+	 $result=mysqli_query($data,$sql);
 
 ?>
 
@@ -17,7 +17,7 @@ $result=mysqli_query($data,$sql);
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Job Seeker Profile</title>
+    <title>Candidate Data</title>
 	<link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/animate.min.css" rel="stylesheet"/>
@@ -26,42 +26,28 @@ $result=mysqli_query($data,$sql);
 </head>
 <body>
         <section id="header">
-           <div class="header-title">Job Seeker Profiles</div>
+           <div class="header-title">View Candidate Data</div>
 		   <div class="logout">
 		       <a href="logout.php">Logout</a>
 		   </div>
 		</section>
-		<aside class="sidebar">
+		<aside>
 		    <ul>
 			    <li>
-				    <a href="adminhome.php">Home</a>
+				    <a href="employerhome.php">Home</a>
 				</li>
 				<li>
-				    <a href="adminprofile.php">Admin Profile</a>
+				    <a href="employerprofile.php">My Profile</a>
 				</li>
 				<li>
-				    <a href="modify_JS_Pro.php">Job Seeker Profiles</a>
+				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
 				</li>
 				<li>
-				    <a href="updateemployerPRO.php">Employer Profiles</a>
-				</li>
-				<li>
-				    <a href="viewmessage.php">View Messages</a>
+				    <a href="">Post Job</a>
 				</li>
 			</ul>
 		</aside>
-		<div class="contentt">
-		      <h1 class="form-title2">View Job Candidate Details</h1>		  
-		</div>
-		<?php
-		    if($_SESSION['message'])
-			{
-				echo $_SESSION['message'];
-			}
-			unset($_SESSION['message']);
-		?>
-		   
-        <div class="content">
+		<div class="content">
 		    <center>
 		    <table border="1px">
 			  <tr>
@@ -74,8 +60,6 @@ $result=mysqli_query($data,$sql);
 				<th class="table_th">Skills</th>
 				<th class="table_th">Experience</th>
 				<th class="table_th">Resume</th>
-				<th class="table_th">Delete</th>
-				<th class="table_th">Update</th>
 			  </tr>
 			  <?php
 			  while($info=$result->fetch_assoc())
@@ -110,17 +94,6 @@ $result=mysqli_query($data,$sql);
 				<td class="table_td">
 				    <?php echo "{$info['resume']}"; ?>
 				</td>
-				<td class="table_td">
-			  <?php 
-			  
-			  echo "<a onClick=\" javascript:return confirm('Are you sure you want to delete this candidate?');\"class='btn btn-danger' href='deletejobseeker.php?job_seeker_id={$info['id']}'>Delete</a>"; 
-			  ?>
-				</td>
-				
-				<td class="table_td">
-				    <?php echo "<a class='btn btn-primary' href='update_js_profile.php?job_seeker_id={$info['id']}'>Update</a>"; ?>
-				</td>
-				
 			  </tr>
 			  <?php
 			  
@@ -130,7 +103,6 @@ $result=mysqli_query($data,$sql);
 			</table>
 			</center>
 		</div>
-    
-        
+		
 </body>
 </html>

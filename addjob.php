@@ -52,13 +52,16 @@ if(isset($_POST['add_job']))
 			    <li>
 				    <a href="employerhome.php">Home</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="employerprofile.php">My Profile</a>
 				</li>
-				 <li>
+				<li>
 				    <a href="modify_JS_Pro.php">Job Seeker Profile</a>
 				</li>
-				 <li>
+				<li>
+				    <a href="viewmessage.php">View Messages</a>
+				</li>
+				<li>
 				    <a href="postjob.php">Post Job</a>
 				</li>
 			</ul>

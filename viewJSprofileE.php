@@ -17,36 +17,36 @@ $result=mysqli_query($data,$sql);
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Job Seeker Profile</title>
+    <title>Job Candidate Profiles</title>
 	<link href="css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/bootstrap.min.css" rel="stylesheet"/>
 	<link href="css/animate.min.css" rel="stylesheet"/>
     <link href="css/employer.css" rel="stylesheet"/>
-	
 </head>
 <body>
         <section id="header">
-           <div class="header-title">Job Seeker Profiles</div>
+           <div class="header-title">Job Candidate Profiles</div>
 		   <div class="logout">
 		       <a href="logout.php">Logout</a>
 		   </div>
-		</section>
-		<aside class="sidebar">
+        </section>
+		<aside>
 		    <ul>
 			    <li>
-				    <a href="adminhome.php">Home</a>
+				    <a href="employerhome.php">Home</a>
 				</li>
 				<li>
-				    <a href="adminprofile.php">Admin Profile</a>
+				    <a href="employerprofile.php">My Profile</a>
 				</li>
 				<li>
-				    <a href="modify_JS_Pro.php">Job Seeker Profiles</a>
+				    <a href="viewJSprofileE.php">Job Candidate Profiles</a>
 				</li>
 				<li>
-				    <a href="updateemployerPRO.php">Employer Profiles</a>
+				    <a href="postjob.php">Post Job</a>
 				</li>
 				<li>
-				    <a href="viewmessage.php">View Messages</a>
+				<li>
+				    <a href="contactusE.php">ContactUS</a>
 				</li>
 			</ul>
 		</aside>
@@ -69,13 +69,10 @@ $result=mysqli_query($data,$sql);
 				<th class="table_th">FirstName</th>
 				<th class="table_th">LastName</th>
 				<th class="table_th">Email</th>
-				<th class="table_th">Password</th>
 				<th class="table_th">SavedJobs</th>
 				<th class="table_th">Skills</th>
 				<th class="table_th">Experience</th>
 				<th class="table_th">Resume</th>
-				<th class="table_th">Delete</th>
-				<th class="table_th">Update</th>
 			  </tr>
 			  <?php
 			  while($info=$result->fetch_assoc())
@@ -96,9 +93,6 @@ $result=mysqli_query($data,$sql);
 				    <?php echo "{$info['email']}"; ?>
 				</td>
 				<td class="table_td">
-				    <?php echo "{$info['password']}"; ?>
-				</td>
-				<td class="table_td">
 				    <?php echo "{$info['saved_jobs']}"; ?>
 				</td>
 				<td class="table_td">
@@ -110,18 +104,7 @@ $result=mysqli_query($data,$sql);
 				<td class="table_td">
 				    <?php echo "{$info['resume']}"; ?>
 				</td>
-				<td class="table_td">
-			  <?php 
-			  
-			  echo "<a onClick=\" javascript:return confirm('Are you sure you want to delete this candidate?');\"class='btn btn-danger' href='deletejobseeker.php?job_seeker_id={$info['id']}'>Delete</a>"; 
-			  ?>
-				</td>
 				
-				<td class="table_td">
-				    <?php echo "<a class='btn btn-primary' href='update_js_profile.php?job_seeker_id={$info['id']}'>Update</a>"; ?>
-				</td>
-				
-			  </tr>
 			  <?php
 			  
 			  }

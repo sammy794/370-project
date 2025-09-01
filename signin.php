@@ -19,7 +19,7 @@ if($data===false)
 		$name=$_POST['username'];
 		$pass=$_POST['password'];
 		
-		$sql="select * from user where username='".$name."' AND password='".$pass."' ";
+		$sql="select * from user where binary username='".$name."' AND binary password='".$pass."' ";
 		
 		$result=mysqli_query($data,$sql);
 		$row=mysqli_fetch_array($result);
@@ -43,6 +43,15 @@ if($data===false)
 			$_SESSION['user_id'] = $row['id'];  
 
 			header("location:job_seekerhome.php");
+			exit;
+		}
+		elseif($row["admin_flag"]==1)
+		{
+			$_SESSION['username']=$name;
+			$_SESSION['admin_flag'] = $row['admin_flag'];
+			$_SESSION['user_id'] = $row['id'];  
+
+			header("location:adminhome.php");
 			exit;
 		}
 		else
