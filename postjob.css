@@ -78,71 +78,6 @@ ul li a:hover
 	text-decoration:none;
 }
 	
-.title
-{
-    margin-left:50%;
-	margin-top:5%;
-    color: black;
-	border-radius: 10px;
-	padding: 2px 5px;
-	display: inline-block; 
-    font-size:20px
-}
-
-.content2 {
-    text-align: center;
-    margin: 60px auto 0; /* push from top and center horizontally */
-    width: fit-content;  /* shrink to fit content */
-}
-
-.form-title {
-    text-align: center;
-    color: black;	
-	padding-top:70px;
-}
-
-.div_deg {
-    background-color: grey;
-    width: 400px;
-    padding: 50px;
-    margin: 0 auto;
-    border-radius: 8px; /* optional: makes corners smooth */
-}
-
-
-
-
-
-.contentT
-{   position: absolute;
-    top: 80%;
-    left: 50%;
-}
-
-
-label
-{
-		   display:inline-block;
-	       text-align:right;
-	       width:100px;
-	       padding-top:10px;
-		   padding-bottom:10px 	   
-	       vertical-align:middle;
-}
-
-.deg
-{
-	background-color:grey;
-	width:400px;
-	padding-top:70px;
-	padding-bottom:70px;
-	margin: 20px auto 0;
-}
-
-
-
-
-
 .content {
     width: 80%;
 	padding:10px;
@@ -151,7 +86,7 @@ label
 	max-width:800px;
 }
 
-.form-title2 {
+.form-title {
     text-align: center;
     color: black;
     padding-top:60px;
@@ -162,49 +97,53 @@ label
 
 .table_th {
     padding: 10px 12px;   /* smaller padding */
-    font-size: 16px;      /* slightly smaller font */
+    font-size: 20px;      /* slightly smaller font */
     text-align: left;
     background-color: #f2f2f2;  /* optional header color */
 }
 
 .table_td {
-    padding: 5px 6px;
-    font-size: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ccc; /* optional row separation */
-}
-
-
-
-
-
-.contentt {
-    text-align: center;
-    padding:60px;
-	color: black;
-}
-
-/* Navigation links below content */
-.opt {
-    text-align:center;
-    justify-content: center;  /* Center horizontally */
-    gap: 50px;   
-    display:flex;
- 	/* Space between links */
     
+    font-size: 18px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 6px;	/* optional row separation */
 }
 
-.opt a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-	text-align:center;
+.content2 {
+  display: flex;
+  justify-content: center;   /* horizontally center */
+  align-items: flex-start;   /* align to top */
+  min-height: 100vh;         /* full viewport height */
+  padding-top: 150px;         /* space from top */
 }
 
-.opt a:hover {
-    color: #0056b3;
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;                 /* space between inputs */
+  width: 400px;              /* fixed width for neat alignment */
 }
+
+.job-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.job-form input[type="text"],
+.job-form textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.job-form input[type="submit"] {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 
 
 

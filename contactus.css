@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    height: 100vh;                 /* ensures body takes full viewport height */
+    background-image: url('../img/bg4.jpg');
+    background-size: 300px auto;     /* width 200px, height auto to maintain aspect ratio */
+    background-position: top right;  /* position at top-right corner */
+    background-repeat: no-repeat; 
+   
+}
+
+#header {
+      position: fixed;     /* stays at the very top */
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      display: flex;
+	  align-items: center;
+      justify-content: center; /* centers the text horizontally */
+      background: #222;         /* dark bar so white text shows */
+      z-index: 1000;
+}
+
+#header .header-title {
+      font-size: 32px;     /* a little smaller than 50px */
+      color: #fff;         /* now visible on the dark bar */
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: .5px;
+}
+
+.logout {
+    position: absolute;  /* Position relative to the #header */
+    top: 50%;           /* Center vertically */
+    right: 20px;        /* 20px from the right edge */
+    transform: translateY(-50%); /* Perfect vertical centering */
+}
+
+.logout a {
+    color: #fff;        /* White text for visibility */
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.logout a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+ul
+{
+	background-color: #424a5b;
+	width:16%;
+	height:100%;
+	position:fixed;
+	padding-top:15%;
+	text-align:center;
+	
+}
+
+ul li
+{
+	list-style:none;
+	padding-bottom:50px;
+	font-size:20px;
+}
+
+ul li a
+{
+	color: white;
+	font-weight:bold;
+	text-decoration:none;
+}
+ul li a:hover
+{
+	color:skyblue;
+	text-decoration:none;
+}
+
+.content2 {
+  display: flex;
+  justify-content: center;   /* horizontally center */
+  align-items: flex-start;   /* align to top */
+  min-height: 100vh;         /* full viewport height */
+  padding-top: 220px;         /* space from top */
+}
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;                 /* space between inputs */
+  width: 400px;              /* fixed width for neat alignment */
+}
+
+.job-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.job-form input[type="text"],
+.job-form textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.job-form input[type="submit"] {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.welcome-text {
+  padding-top:100px;
+  top:40px;
+  position: absolute;      
+  text-align: center;
+  font-size: 24px;
+  font-family:outfit;
+  font-weight: bold;
+  width: 100%;             /* so text doesn’t overflow */
+}
+
+
+
